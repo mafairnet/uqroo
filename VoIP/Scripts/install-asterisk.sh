@@ -35,7 +35,7 @@ rm -f asterisk-16-current.tar.gz
 cd asterisk-*
 ./configure --libdir=/usr/lib64
 make menuselect
-#!/bin/bash
+contrib/script/get_mp3.sh
 cd /usr/src/asterisk-*
 echo "Compiling and installing asterisk"
 make
@@ -47,9 +47,9 @@ echo "Setting useras and permissions"
 groupadd asterisk
 useradd -r -d /var/lib/asterisk -g asterisk asterisk
 usermod -aG audio,dialout asterisk
-chown -R asterisk.asterisk /etc/asterisk
-chown -R asterisk.asterisk /var/{lib,log,spool}/asterisk
-chown -R asterisk.asterisk /usr/lib64/asterisk
+chown -R asterisk:asterisk /etc/asterisk
+chown -R asterisk:asterisk /var/{lib,log,spool}/asterisk
+chown -R asterisk:asterisk /usr/lib64/asterisk
 echo "AST_USER='asterisk'" > /etc/sysconfig/asterisk
 echo "AST_GROUP='asterisk'" >> /etc/sysconfig/asterisk
 echo "runuser = asterisk ; The user to run as." > /etc/asterisk/asterisk.conf
