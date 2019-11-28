@@ -1,5 +1,11 @@
 #!/bin/bash
 yum -y install wget httpd wireshark php php-gd php-mysql php-mbstring mtr php-process librsvg2 librsvg2-tools urw-fonts mariadb-server
+wget https://www.voipmonitor.org/current-stable-sniffer-static-64bit.tar.gz --content-disposition --no-check-certificate
+tar xzf voipmonitor-*-static.tar.gz
+cd voipmonitor-*-static
+./install-script.sh
+systemctl start mariadb
+systemctl enable mariadb
 cd /var/www/html
 wget "http://www.voipmonitor.org/download-gui?version=latest&major=5&allowed&phpver=54" -O w.tar.gz
 tar xzf w.tar.gz
@@ -37,3 +43,4 @@ chmod +x '/var/www/html/bin/t38_decode-2-i686'
 wget http://sourceforge.net/projects/voipmonitor/files/wkhtml/phantomjs-2.1.1-x86_64.gz/download -O '/var/www/html/bin/phantomjs-2.1.1-x86_64.gz'
 gunzip '/var/www/html/bin/phantomjs-2.1.1-x86_64.gz'
 chmod +x '/var/www/html/bin/phantomjs-2.1.1-x86_64'
+mysql_secure_installation
